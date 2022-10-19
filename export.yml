@@ -1,6 +1,7 @@
 - name: Playbook que executa o export das regras
   hosts: NOME_DO_CLIENTE
   gather_facts: no
+  debugger: always
   tasks:
   - name: "Exportando a regra"
     shell: cd /opt/rules/export && /opt/qradar/bin/contentManagement.pl -a export --content-type 3 --regex "^NOME_DA_REGRA*" | tee new_rule
