@@ -2,10 +2,6 @@
   hosts: NOME_DO_CLIENTE
   gather_facts: no
   tasks:
-  #- name: "Entrando no diretório"
-  #  shell: cd 
- # - name: "Definindo as variáveis necessárias"
- #   shell: regra2= "Adição de grupo privilegiado" | sed -e "s/ /_/g"
   - name: "Exportando a regra"
     shell: cd /opt/rules/export && /opt/qradar/bin/contentManagement.pl -a export --content-type 3 --regex "^NOME_DA_REGRA*" | tee new_rule
   - name: "Extraindo os arquivos"
