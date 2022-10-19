@@ -6,3 +6,5 @@
     shell: cd /opt/rules/export && /opt/qradar/bin/contentManagement.pl -a export --content-type 3 --regex "^NOME_DA_REGRA*" | tee new_rule
   - name: "Extraindo os arquivos"
     shell: cd /opt/rules/export && unzip `grep SUCCESS new_rule | cut -d"/" -f5`
+  - name: "Excluindo arquivos não utilizados"
+    shell: cd /opt/rules/export && rm -rf *.zip && rm -rf new_rule
