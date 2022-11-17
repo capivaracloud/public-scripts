@@ -6,15 +6,27 @@
     shell: cd /opt/rules/export && rm -rf * && /opt/qradar/bin/contentManagement.pl -a export --content-type 3 --regex "^NOME_DA_REGRA*" | tee new_rule
   - name: "Extraindo os arquivos"
     shell: cd /opt/rules/export && unzip `grep SUCCESS new_rule | cut -d"/" -f5`
-  - name: definindo a variavel da regra
-    shell: rule_name=`grep SUCCESS new_rule | cut -d"/" -f5 | sed -e "s/.zip/.xml/g"`
+  - name: "Excluindo arquivos não utilizados"
+    shell: cd /opt/rules/export && rm -rf *.zip && rm -rf new_rule
+###
+
+#- name: Playbook que executa o export das regras
+#  hosts: NOME_DO_CLIENTE
+#  gather_facts: no
+#  tasks:
+#  - name: "Exportando a regra"
+#    shell: cd /opt/rules/export && rm -rf * && /opt/qradar/bin/contentManagement.pl -a export --content-type 3 --regex "^NOME_DA_REGRA*" | tee new_rule
+#  - name: "Extraindo os arquivos"
+#    shell: cd /opt/rules/export && unzip `grep SUCCESS new_rule | cut -d"/" -f5`
+#  - name: definindo a variavel da regra
+#    shell: rule_name=`grep SUCCESS new_rule | cut -d"/" -f5 | sed -e "s/.zip/.xml/g"`
   #- name: definindo o nome do arquivo
   #  shell: mv -v $rule_name.xml /opt/rules/export/"NOME_DA_REGRA".xml
   #- name: "Renomeando o arquivo "
   #  shell: mv `grep SUCCESS new_rule | cut -d"/" -f5 | sed -e "s/.zip/.xml/g"` "NOME_DA_REGRA*".xml
   #  command: mv /opt/rules/export/`grep SUCCESS new_rule | cut -d"/" -f5 | sed -e "s/.zip/.xml/g"` "NOME_DA_REGRA*".xml` /opt/rules/export/"NOME_DA_REGRA".xml
-  - name: "Excluindo arquivos não utilizados"
-    shell: cd /opt/rules/export && rm -rf *.zip && rm -rf new_rule
+#  - name: "Excluindo arquivos não utilizados"
+#    shell: cd /opt/rules/export && rm -rf *.zip && rm -rf new_rule
   #- name: "Renomeando o arquivo "
   #  shell: cp -p *.xml "NOME_DA_REGRA*".xml
 ###
