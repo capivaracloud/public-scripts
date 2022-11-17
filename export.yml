@@ -9,5 +9,5 @@
   - name: "Excluindo arquivos não utilizados"
     shell: cd /opt/rules/export && rm -rf *.zip && rm -rf new_rule
   - name: "Renomeando o arquivo "
-    shell: mv * "^NOME_DA_REGRA*"
+    shell: mv *.xml "^NOME_DA_REGRA*".xml
 ###
