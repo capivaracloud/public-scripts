@@ -7,7 +7,10 @@
   - name: "Extraindo os arquivos"
     shell: cd /opt/rules/export && unzip `grep SUCCESS new_rule | cut -d"/" -f5`
   - name: "Renomeando o arquivo "
-    shell: mv `grep SUCCESS new_rule | cut -d"/" -f5 | sed -e "s/.zip/.xml/g"` "NOME_DA_REGRA*".xml
+  #  shell: mv `grep SUCCESS new_rule | cut -d"/" -f5 | sed -e "s/.zip/.xml/g"` "NOME_DA_REGRA*".xml
+    command: mv /opt/rules/export/`grep SUCCESS new_rule | cut -d"/" -f5 | sed -e "s/.zip/.xml/g"` "NOME_DA_REGRA*".xml` /opt/rules/export/"NOME_DA_REGRA".xml
+  
+  
   - name: "Excluindo arquivos não utilizados"
     shell: cd /opt/rules/export && rm -rf *.zip && rm -rf new_rule
   #- name: "Renomeando o arquivo "
