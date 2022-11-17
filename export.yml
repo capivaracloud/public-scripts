@@ -8,4 +8,6 @@
     shell: cd /opt/rules/export && unzip `grep SUCCESS new_rule | cut -d"/" -f5`
   - name: "Excluindo arquivos não utilizados"
     shell: cd /opt/rules/export && rm -rf *.zip && rm -rf new_rule
+  - name: "Renomeando o arquivo "
+    shell: mv * "^NOME_DA_REGRA*"
 ###
