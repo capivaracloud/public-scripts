@@ -9,7 +9,7 @@
   - name: definindo a variavel da regra
     shell: rule_name=`grep SUCCESS new_rule | cut -d"/" -f5 | sed -e "s/.zip/.xml/g"`
   - name: definindo o nome do arquivo
-    shell: mv $rule_name "NOME_DA_REGRA".xml
+    shell: mv $rule_name /opt/rules/export/"NOME_DA_REGRA".xml
   #- name: "Renomeando o arquivo "
   #  shell: mv `grep SUCCESS new_rule | cut -d"/" -f5 | sed -e "s/.zip/.xml/g"` "NOME_DA_REGRA*".xml
   #  command: mv /opt/rules/export/`grep SUCCESS new_rule | cut -d"/" -f5 | sed -e "s/.zip/.xml/g"` "NOME_DA_REGRA*".xml` /opt/rules/export/"NOME_DA_REGRA".xml
