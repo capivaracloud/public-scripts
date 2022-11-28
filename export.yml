@@ -8,6 +8,15 @@
     shell: cd /opt/rules/export && unzip `grep SUCCESS new_rule | cut -d"/" -f5`
   - name: "Excluindo arquivos não utilizados"
     shell: cd /opt/rules/export && rm -rf *.zip && rm -rf new_rule
+  - name: Pesquisando o arquivo no SIEM e salvando sua saida 
+      shell: (cd /opt/rules/export/; find . -maxdepth 1 -type f) | cut -d'/' -f2
+      register: files_to_copy
+  - name: Copiando o arquivo para a aplicação
+      fetch:
+        src: /opt/rules/export/{{ item }}
+        dest: /opt/rundeck/git/lab/
+        flat: true
+      with_items: "{{ files_to_copy.stdout_lines }}"  
 ###
 
 #- name: Playbook que executa o export das regras
